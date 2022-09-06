@@ -1,10 +1,10 @@
-const amount = 10;
-if (amount >10) {
-    console.log('num is greater');
-}
-else{
-    console.log('num is lesser');
+const names = require('./3-Firstmodules')
+const sayname = require('./4-SecondModules')
+const person = require('./5-alternative-method')
 
-}
 
-console.log('first node app');
+
+sayname('mohan');
+sayname(names.johan);
+sayname(names.mona);
+console.log(person);
