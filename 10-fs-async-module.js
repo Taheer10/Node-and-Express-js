@@ -1,19 +1,35 @@
-//Async Fs Module
+//ASync FS module
 
-const {readFileSync, writeFileSync} = require('fs')
-
-const first = readFileSync('./content/first.txt', 'utf8');
-
-const test = readFileSync('./content/subcontent/test.txt', 'utf8');
-
-console.log(first,test);
-
-writeFileSync('./content/result-sync.txt',
-`Here is the result ${first}, ${test} result`,
-
-{flag:'a'}
-)
-//Flag A appendes to the file
+const {readFile, writeFile} = require('fs')
 
 
+readFile('./content/first.txt','utf8', (err,result) =>{
+   if (err) {
+    console.log(err)
+    return 
+    
+   }
 
+   const first = result;
+   readFile('./content/second.txt','utf8',(err,result) =>{
+    if (err) {
+        console.log(err)
+        return 
+        
+       }
+
+       const second = result;
+       writeFile('./content/result-async.txt',
+       `The result is : ${first} ,${second}`
+       ,(err,result) =>{
+        if (err) {
+            console.log(err)
+            return 
+            
+           }
+       console.log(result)
+       })
+   })
+
+
+})
